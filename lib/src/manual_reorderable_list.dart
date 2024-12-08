@@ -6,10 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 enum ReorderType {
-  /// Use for manual reordering by [startItemManualReorder]
+  /// Use for manual reordering by startItemManualReorder method
   manual,
 
-  /// Use for drag reordering by [startItemDragReorder]
+  /// Use for drag reordering by startItemDragReorder method
   drag,
 
   /// Use for both reordering types.
@@ -224,7 +224,7 @@ class ManualReorderableList extends StatefulWidget {
   /// {@macro flutter.widgets.scroll_view.controller}
   final ScrollController? controller;
 
-  /// {@macro flutter.widgets.scroll_view.primary}
+  /// Is primary?
   final bool? primary;
 
   /// {@macro flutter.widgets.scroll_view.physics}

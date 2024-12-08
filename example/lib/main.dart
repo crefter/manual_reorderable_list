@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:manual_reorderable_list/export.dart';
+import 'package:manual_reorderable_list/manual_reorderable_list.dart';
 
 final _random = Random();
 
