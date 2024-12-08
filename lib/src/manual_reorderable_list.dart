@@ -1301,17 +1301,19 @@ class ManualSliverReorderableListState
 
     double? positionToScroll;
 
+    final itemExtent = _itemExtent!;
+
     if (isToEnd) {
       positionToScroll = isEndItemExist
-          ? endDy - (endDy - startDy - scrollPixels) + _itemExtent! * 2
+          ? endDy - (endDy - startDy - scrollPixels) + itemExtent * 2
           : (endDy) +
               kBottomNavigationBarHeight -
               kToolbarHeight -
               (startDy - scrollPixels).abs();
     } else if (isToStart) {
       positionToScroll = isEndItemExist
-          ? startDy - (startDy - endDy) - _itemExtent! * 2
-          : endDy - (_endIndex == 0 ? 0 : _itemExtent!);
+          ? startDy - (startDy - endDy) - itemExtent * 2
+          : endDy - (_endIndex == 0 ? 0 : itemExtent);
     }
 
     if (positionToScroll == null) return;
@@ -1335,7 +1337,7 @@ class ManualSliverReorderableListState
         : _itemOffsetBottomLeftAt(_endIndex!)!;
     final dy = endItemPosition.dy +
         _scrollPosition!.pixels +
-        (_endIndex == widget.itemCount - 1 ? _itemExtent! / 6 : 0);
+        (_endIndex == widget.itemCount - 1 ? itemExtent / 6 : 0);
     _endPosition = Offset(endItemPosition.dx, dy);
     _startPosition = Offset(
       _startPosition.dx,
@@ -1351,8 +1353,10 @@ class ManualSliverReorderableListState
         ? pixels
         : (_startPosition.dy - _scrollPosition!.pixels).abs();
 
-    return _endIndex! > _startIndex! &&
-        endDy > _screenSize - kBottomNavigationBarHeight + scrollPixels;
+    final minSizeToEnd =
+        _screenSize - kBottomNavigationBarHeight + scrollPixels;
+
+    return _endIndex! > _startIndex! && endDy > minSizeToEnd;
   }
 
   // Is item located in start? (vertical - end item is higher than start item)
@@ -1360,8 +1364,9 @@ class ManualSliverReorderableListState
     final endDy = _endPosition.dy.abs();
     final scrollPixels = _scrollPosition!.pixels;
 
-    return _endIndex! < _startIndex! &&
-        endDy - _itemExtent! * 1.5 < scrollPixels;
+    final minSizeToStart = endDy - _itemExtent! * 1.5;
+
+    return _endIndex! < _startIndex! && minSizeToStart < scrollPixels;
   }
 
   // Animate dragInfo to endIndex from position
@@ -1369,9 +1374,11 @@ class ManualSliverReorderableListState
     AnimationController animationController, {
     Duration? itemAnimationDuration,
   }) async {
+    final startPosition =
+        Offset(_startPosition.dx, _startPosition.dy + _itemExtent!);
     _deltaOffset = _calculatePositionDelta(
       _scrollDirection,
-      Offset(_startPosition.dx, _startPosition.dy + _itemExtent!),
+      startPosition,
       _endPosition,
     );
 
