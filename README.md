@@ -1,5 +1,6 @@
 A Flutter package to create reorderable list, which can manual reordering!
 
+<img alt="Example video" src="https://raw.githubusercontent.com/crefter/manual_reorderable_list/master/assets/example.gif" width="300"/>
 <img alt="Example video" src="https://raw.githubusercontent.com/crefter/manual_reorderable_list/master/assets/example.mov" width="300"/>
 
 ## Features
