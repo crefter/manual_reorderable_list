@@ -1,9 +1,9 @@
 name: manual_reorderable_list
 description: "Reorderable list with possible manual triggering of reordering"
-version: 1.0.0
-homepage: https://github.com/crefter/app_onboarding
-repository: https://github.com/crefter/app_onboarding
-issue_tracker: https://github.com/crefter/app_onboarding/issues
+version: 1.0.0+1
+homepage: https://github.com/crefter/manual_reorderable_list
+repository: https://github.com/crefter/manual_reorderable_list
+issue_tracker: https://github.com/crefter/manual_reorderable_list/issues
 
 environment:
   sdk: ">=3.0.0 < 4.0.0"
